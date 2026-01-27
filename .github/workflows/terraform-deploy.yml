@@ -1,61 +1,46 @@
 name: Terraform Deploy (Phase 5)
 
-<<<<<<< HEAD
-# Trigger the workflow on push to main branch
-=======
->>>>>>> c352439 (Phase 5: Add Terraform CD workflow)
 on:
   push:
     branches:
       - main
     paths:
-<<<<<<< HEAD
-      - "terraform/**"  # Only run if files inside terraform/ change
-=======
       - "terraform/**"
->>>>>>> c352439 (Phase 5: Add Terraform CD workflow)
 
 jobs:
   terraform:
     runs-on: ubuntu-latest
 
     steps:
-<<<<<<< HEAD
-      # Step 1: Checkout repo
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Step 2: Setup Terraform
-=======
-      - name: Checkout code
-        uses: actions/checkout@v4
-
->>>>>>> c352439 (Phase 5: Add Terraform CD workflow)
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.14.3
 
-<<<<<<< HEAD
-      # Step 3: Initialize Terraform
-=======
->>>>>>> c352439 (Phase 5: Add Terraform CD workflow)
       - name: Terraform Init
         working-directory: terraform
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
         run: terraform init
 
-<<<<<<< HEAD
-      # Step 4: Plan Terraform changes
-=======
->>>>>>> c352439 (Phase 5: Add Terraform CD workflow)
       - name: Terraform Plan
         working-directory: terraform
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
         run: terraform plan
 
-<<<<<<< HEAD
-      # Step 5: Apply Terraform changes automatically
-=======
->>>>>>> c352439 (Phase 5: Add Terraform CD workflow)
       - name: Terraform Apply
         working-directory: terraform
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
         run: terraform apply -auto-approve
+
