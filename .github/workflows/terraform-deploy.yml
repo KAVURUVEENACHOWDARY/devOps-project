@@ -1,0 +1,39 @@
+name: Terraform Deploy (Phase 5)
+
+# Trigger the workflow on push to main branch
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "terraform/**"  # Only run if files inside terraform/ change
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout repo
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Setup Terraform
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.14.3
+
+      # Step 3: Initialize Terraform
+      - name: Terraform Init
+        working-directory: terraform
+        run: terraform init
+
+      # Step 4: Plan Terraform changes
+      - name: Terraform Plan
+        working-directory: terraform
+        run: terraform plan
+
+      # Step 5: Apply Terraform changes automatically
+      - name: Terraform Apply
+        working-directory: terraform
+        run: terraform apply -auto-approve
