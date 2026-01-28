@@ -21,5 +21,6 @@ devOps-project/
 │ └── deploy.sh
 ├── index.html
 └── README.md
+<img width="1421" height="778" alt="1_4SJhCY05XrGBsAkQ8bJPYA" src="https://github.com/user-attachments/assets/88863224-f731-4af6-8f93-7664b5b6e2f7" />
 
 
